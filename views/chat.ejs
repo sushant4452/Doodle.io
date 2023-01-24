@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Doodle Room</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body class="chat">
+
+    <div class="chat__sidebar">
+      <h2><%= names %></h2>
+      <h3>Room ID: <%= room %></h3>
+      <div id="users"></div>
+    </div>
+
+    <div class="modal" id="myModal"></div>
+    <div class="chat__main">
+      <div class="game_board" id="game_board">
+        <div class="timer" id="timer">
+          <i class='far fa-clock' style='font-size:15px'></i>
+        </div>
+        <div class="play_board" id="play_board">
+          <div id="palette">
+            <button id="pen"><i class="fas fa-pen"></i></button>
+            <button id="clear"><i class="fas fa-times"></i></button>
+            <button id="erase"><i class="fas fa-eraser"></i></button>
+            <input type="color" id="color">
+          </div>
+          <div class="canvas" id="canvas">
+            <canvas class="myCanvas" id="myCanvas" style="border:2px solid black" ></canvas>
+          </div>
+          <div class="chat__box", id="chat__box">
+            <ol id="messages" class="chat__messages"></ol>
+          </div>
+        </div>
+        <div class="chat__footer">
+          <form id="message-form">
+            <input id="message-box" type="text" placeholder="Message" autofocus autocomplete="off"/>
+            <button id="submit-btn">Send</button>
+            <button id="game-btn">start</button>
+          </form>
+        </div>
+      </div>
+
+    <script id="message-template" type="text/template">
+      <li class="message">
+        <div class="message__title">
+          <h4>{{from}}</h4>
+        </div>
+        <div class="message__body">
+          <p>{{text}}</p>
+        </div>
+      </li>
+    </script>
+
+    <script id="modal-template" type="text/template">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>{{player_name}}</p>
+        </div>
+      </div>
+    </script>
+    
+    <script src="../socket.io/socket.io.js"></script>
+    <script>
+      var userName = '<%= names %>';
+      var room = '<%= room %>'
+    </script>
+    <script type="text/javascript" src="js\index.js"></script>
+    <script type="text/javascript" src="js\libs\canvas.js"></script>
+    <script type="text/javascript" src="js\libs\mustache.js"></script>
+  </body>
+</html>
